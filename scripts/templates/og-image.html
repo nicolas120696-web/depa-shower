@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300&family=DM+Sans:wght@500&display=block"
+    />
+    <style>
+      * { box-sizing: border-box; margin: 0; }
+      html, body { width: 1200px; height: 630px; overflow: hidden; }
+      body {
+        position: relative;
+        display: grid;
+        place-items: center;
+        color: #40352d;
+        background:
+          radial-gradient(60% 70% at 50% 38%, #fffcf7 0%, rgba(255, 252, 247, 0) 70%),
+          linear-gradient(180deg, #f5f0e8, #ece1d1);
+        font-family: 'DM Sans', sans-serif;
+      }
+      .frame { position: absolute; inset: 28px; border: 1px solid rgba(64, 53, 45, 0.18); }
+      .arch { position: absolute; left: 50%; bottom: 0; transform: translateX(-50%); width: 560px; height: 600px; }
+      .glow {
+        position: absolute; left: 50%; top: 42%; width: 520px; height: 520px; transform: translate(-50%, -50%);
+        border-radius: 50%; background: radial-gradient(circle, rgba(220, 196, 147, 0.45), rgba(245, 240, 232, 0) 65%);
+      }
+      .content { position: relative; text-align: center; display: grid; justify-items: center; gap: 22px; }
+      .eyebrow { font-size: 17px; letter-spacing: 0.42em; text-transform: uppercase; color: #7d6234; padding-left: 0.42em; }
+      h1 {
+        font-family: 'Cormorant Garamond', serif; font-weight: 300; text-transform: uppercase;
+        font-size: 118px; line-height: 0.95; letter-spacing: 0.07em; padding-left: 0.07em;
+      }
+      h1 span { display: block; }
+      h1 span + span { color: #7d6234; }
+      .quote { font-family: 'Cormorant Garamond', serif; font-style: italic; font-weight: 300; font-size: 34px; color: #6b5d50; }
+      .date {
+        display: flex; align-items: center; gap: 22px; font-size: 18px; letter-spacing: 0.36em;
+        text-transform: uppercase; padding-left: 0.36em;
+      }
+      .date i { display: block; width: 7px; height: 7px; border: 1px solid #c6a66b; transform: rotate(45deg); }
+    </style>
+  </head>
+  <body>
+    <div class="glow"></div>
+    <svg class="arch" viewBox="0 0 400 600" preserveAspectRatio="xMidYMax meet" fill="none">
+      <path d="M30 600V200a170 170 0 0 1 340 0v400" stroke="#40352D" stroke-opacity=".25" />
+      <path d="M62 600V204a138 138 0 0 1 276 0v396" stroke="#C6A66B" stroke-opacity=".8" />
+    </svg>
+    <div class="frame"></div>
+    <div class="content">
+      <p class="eyebrow">Tienes una invitación</p>
+      <h1><span>Depa</span><span>Shower</span></h1>
+      <p class="quote">Un nuevo hogar, una nueva historia por celebrar</p>
+      <p class="date">15 de diciembre <i></i> 2026</p>
+    </div>
+  </body>
+</html>

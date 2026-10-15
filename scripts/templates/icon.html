@@ -1,0 +1,26 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <style>
+      * { margin: 0; }
+      html, body { background: #40352d; overflow: hidden; }
+      svg { position: absolute; top: 0; left: 0; display: block; }
+    </style>
+  </head>
+  <body>
+    <!-- Versión a sangre (sin esquinas redondeadas): iOS aplica su propia máscara. -->
+    <svg id="icon" viewBox="0 0 64 64">
+      <rect width="64" height="64" fill="#40352D" />
+      <path d="M17 53V30a15 15 0 0 1 30 0v23" fill="none" stroke="#F5F0E8" stroke-width="3.5" stroke-linecap="round" />
+      <circle cx="32" cy="30" r="4.5" fill="#C6A66B" />
+    </svg>
+    <script>
+      // El tamaño llega en el hash (#180) porque Chrome impone un ancho mínimo de ventana.
+      const size = Number(location.hash.slice(1)) || 180
+      const icon = document.getElementById('icon')
+      icon.setAttribute('width', size)
+      icon.setAttribute('height', size)
+    </script>
+  </body>
+</html>
