@@ -1,4 +1,4 @@
-import { m, useReducedMotion, useScroll, useTransform } from 'motion/react'
+import { m, useReducedMotion } from 'motion/react'
 import { forwardRef } from 'react'
 import { eventConfig } from '../config/event'
 import { dateParts } from '../lib/date'
@@ -14,10 +14,6 @@ const ease = [0.22, 1, 0.36, 1] as const
 
 export const Hero = forwardRef<HTMLHeadingElement, HeroProps>(function Hero({ active }, titleRef) {
   const reduce = useReducedMotion()
-  const { scrollY } = useScroll()
-  const archY = useTransform(scrollY, [0, 900], [0, reduce ? 0 : 140])
-  const glowY = useTransform(scrollY, [0, 900], [0, reduce ? 0 : 220])
-
   const [first, ...rest] = eventConfig.title.split(' ')
   const base = 0.75
 
@@ -29,12 +25,12 @@ export const Hero = forwardRef<HTMLHeadingElement, HeroProps>(function Hero({ ac
 
   return (
     <header className="hero" id="inicio">
-      <m.div className="hero__glow" style={{ y: glowY }} aria-hidden="true" />
+      <div className="hero__glow" aria-hidden="true" />
 
       <div className="hero__inner">
-        <m.div className="hero__arch" style={{ y: archY }}>
+        <div className="hero__arch">
           {active && <ArchLines delay={base - 0.2} />}
-        </m.div>
+        </div>
 
         {eventConfig.hosts.length > 0 && (
           <m.p className="eyebrow" {...item(0)}>
@@ -68,17 +64,6 @@ export const Hero = forwardRef<HTMLHeadingElement, HeroProps>(function Hero({ ac
           “Nos encantará compartir este momento contigo.”
         </m.p>
       </div>
-
-      <m.a
-        href="#cuenta-regresiva"
-        className="scroll-cue"
-        initial={{ opacity: 0 }}
-        animate={active ? { opacity: 1 } : undefined}
-        transition={{ delay: base + 1.4, duration: 1 }}
-      >
-        <span>Descubrir</span>
-        <span className="scroll-cue__line" aria-hidden="true" />
-      </m.a>
     </header>
   )
 })

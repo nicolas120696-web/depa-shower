@@ -29,13 +29,15 @@ export interface EventConfig {
   /** Desfase UTC fijo de la zona horaria anterior. */
   utcOffset: string
   location: {
-    /** Enlace de Google Maps. */
+    /** Enlace del lugar en Google Maps. */
     mapsUrl: string
+    /** Ruta en Google Maps (navegación hacia el mismo punto). */
+    mapsRouteUrl: string
+    /** Ruta en Waze (navegación hacia el mismo punto). */
+    wazeUrl: string
     /** Nombre o dirección visible (opcional). null = no se muestra. */
     address: string | null
   }
-  /** Texto del mensaje de WhatsApp que acompaña al enlace. */
-  shareMessage: string
   /** Metadatos para buscadores y vista previa (WhatsApp, redes sociales). */
   seo: {
     title: string
@@ -59,9 +61,11 @@ export const eventConfig: EventConfig = {
   utcOffset: '-05:00',
   location: {
     mapsUrl: 'https://maps.app.goo.gl/4jz81D6eYPxT318d7',
+    // Coordenadas del mismo pin (Besco Inmobiliaria). Cámbialas si mueves el punto.
+    mapsRouteUrl: 'https://www.google.com/maps/dir/?api=1&destination=-11.9963701,-77.0583505',
+    wazeUrl: 'https://waze.com/ul?ll=-11.9963701,-77.0583505&navigate=yes',
     address: null,
   },
-  shareMessage: 'Te comparto la invitación a nuestro Depa Shower ✨ ¡Nos encantará celebrar contigo!',
   seo: {
     title: 'Depa Shower · 15 de diciembre de 2026',
     description:

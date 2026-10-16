@@ -395,10 +395,10 @@ a {
 /* ─────────────────────────── Hero ─────────────────────────── */
 .hero {
   position: relative;
-  min-height: 100svh;
+  min-height: 100%;
   display: grid;
   place-items: center;
-  padding: clamp(6rem, 15vh, 9rem) var(--gutter) clamp(6.5rem, 15vh, 8.5rem);
+  padding: clamp(1.25rem, 4vh, 3rem) var(--gutter);
   text-align: center;
   overflow: hidden;
   isolation: isolate;
@@ -512,49 +512,111 @@ a {
 .hero__closing {
   font-size: clamp(1.15rem, 4.5vw, 1.45rem);
   line-height: 1.35;
+  max-width: 18ch;
   color: var(--espresso);
   text-wrap: balance;
 }
 
-.scroll-cue {
+/* ─────────────────────────── Capítulos ─────────────────────────── */
+.deck {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  background:
+    radial-gradient(120% 60% at 50% 0%, var(--ivory) 0%, transparent 60%),
+    linear-gradient(180deg, var(--cream) 0%, #f1e9dd 100%);
+}
+
+.deck__viewport {
+  position: relative;
+  flex: 1;
+  min-height: 0;
+}
+
+.deck__panel {
   position: absolute;
-  left: 50%;
-  bottom: clamp(1rem, 3vh, 2rem);
-  translate: -50% 0;
+  inset: 0;
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+}
+
+.deck .section {
+  flex: 1;
   display: grid;
-  justify-items: center;
-  gap: 0.4rem;
-  min-width: 44px;
+  align-content: center;
+  min-height: 100%;
+  padding: clamp(1.25rem, 4vh, 3rem) var(--gutter);
+}
+
+.deck .hero__title {
+  font-size: clamp(2.7rem, min(14vw, 11svh), 8rem);
+}
+
+.deck .hero__inner {
+  gap: clamp(0.8rem, 2.2vh, 1.6rem);
+}
+
+.deck h1:focus,
+.deck h2:focus {
+  outline: none;
+}
+
+.deck__nav {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto minmax(0, 1fr);
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem var(--gutter) calc(0.75rem + env(safe-area-inset-bottom));
+  border-top: 1px solid var(--line);
+  background: rgba(245, 240, 232, 0.94);
+}
+
+.deck__back {
+  justify-self: start;
   min-height: 44px;
-  padding: 0.25rem;
-  font-size: 0.62rem;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
+  padding: 0 0.15rem;
+  border: 0;
+  background: none;
   color: var(--muted);
-  text-decoration: none;
+  font: 500 0.72rem/1 var(--sans);
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+  cursor: pointer;
 }
 
-.scroll-cue__line {
-  width: 1px;
-  height: 2.25rem;
-  background: linear-gradient(var(--champagne), transparent);
-  transform-origin: top;
-  animation: cue 2.4s var(--ease) infinite;
+.deck__back:disabled,
+.deck__next:disabled {
+  visibility: hidden;
 }
 
-@keyframes cue {
-  0% {
-    transform: scaleY(0);
-    opacity: 1;
-  }
-  60% {
-    transform: scaleY(1);
-    opacity: 1;
-  }
-  100% {
-    transform: scaleY(1);
-    opacity: 0;
-  }
+.deck__next {
+  justify-self: end;
+  min-height: 2.75rem;
+  padding-inline: 1.15rem;
+  letter-spacing: 0.14em;
+}
+
+.deck__steps {
+  display: flex;
+  gap: 0.55rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.deck__step {
+  display: block;
+  width: 6px;
+  height: 6px;
+  border: 1px solid var(--champagne);
+  transform: rotate(45deg);
+}
+
+.deck__step--current {
+  background: var(--champagne);
 }
 
 /* ─────────────────────────── Cuenta regresiva ─────────────────────────── */
@@ -746,25 +808,21 @@ a {
   color: var(--champagne-ink);
 }
 
-/* ─────────────────────────── Compartir ─────────────────────────── */
-.share {
+/* ─────────────────────────── Cierre ─────────────────────────── */
+.farewell {
   text-align: center;
 }
 
-.share__card {
+.farewell__card {
   display: grid;
   justify-items: center;
-  gap: 1.25rem;
-  max-width: 40rem;
+  gap: 1.1rem;
+  width: min(100%, 40rem);
   margin-inline: auto;
-  padding: clamp(2.5rem, 8vw, 4rem) clamp(1rem, 5vw, 3.5rem);
+  padding: clamp(1.75rem, 5vh, 3rem) clamp(1rem, 5vw, 3rem);
   border: 1px solid var(--line);
   border-radius: 999px 999px 0 0;
   background: linear-gradient(180deg, rgba(255, 252, 247, 0.9), rgba(255, 252, 247, 0.4));
-}
-
-.share__card .lead {
-  margin-bottom: 0.5rem;
 }
 
 /* ─────────────────────────── Pie ─────────────────────────── */

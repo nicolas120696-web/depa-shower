@@ -10,10 +10,10 @@ Experiencia web elegante, animada y pensada para compartirse por WhatsApp.
 - **Portada interactiva**: una puerta de dos hojas que se abre al pulsar «Abrir invitación».
 - **Invitación editorial** con arco arquitectónico animado y fecha destacada.
 - **Cuenta regresiva** calculada en la zona horaria de Perú (`America/Lima`).
-- **Detalles** del evento: fecha, hora (o «Por confirmar») y botón **Ver ubicación** (Google Maps).
-- **Agregar al calendario**: Google Calendar o archivo `.ics` (Apple Calendar, Outlook…).
+- **Cinco apartados** que avanzan con un clic (y se puede volver): invitación, cuenta regresiva, detalles, hogar y cierre.
+- **Detalles** del evento: fecha, hora (o «Por confirmar»), **Ruta en Maps** y **Ruta en Waze**.
+- **Cierre «Te esperamos»**, con la opción de agregar el evento al calendario (Google o archivo `.ics`). No incluye reenvío de la invitación.
 - **Sección «Nuestro nuevo hogar»** con ilustración SVG propia.
-- **Compartir por WhatsApp** con un enlace generado automáticamente.
 - **Vista previa para WhatsApp/redes** (Open Graph + Twitter/X) con imagen 1200×630 propia.
 - Accesible (teclado, lectores de pantalla, contraste AA) y respeta **movimiento reducido**.
 - Sin backend, sin bases de datos, sin imágenes externas: todo es SVG, CSS y recursos locales.
@@ -41,11 +41,11 @@ No se usa Tailwind: el diseño es muy específico y unos pocos estilos propios c
 │   └── templates/                 # Plantillas HTML de esas imágenes
 ├── src/
 │   ├── config/event.ts            # ⭐ ÚNICO ARCHIVO A EDITAR (fecha, hora, nombres…)
-│   ├── components/                # Intro, Hero, Countdown, Details, HomeSection, Share, Footer
+│   ├── components/                # Intro, Hero, Countdown, Details, HomeSection, Farewell
 │   │   ├── illustrations/         # SVG animados (arco, interior)
 │   │   └── ui/                    # Reveal, Rule
 │   ├── hooks/useCountdown.ts
-│   ├── lib/                       # Fechas (zona horaria), calendario (.ics) y WhatsApp
+│   ├── lib/                       # Fechas (zona horaria) y calendario (.ics)
 │   ├── styles/global.css
 │   ├── App.tsx
 │   └── main.tsx
@@ -93,7 +93,7 @@ Al definir `time`:
 - la cuenta regresiva apunta a esa hora exacta (en lugar del inicio del día),
 - el calendario crea un evento con hora de inicio y fin (en lugar de «todo el día»).
 
-En el mismo archivo puedes cambiar el **mensaje de WhatsApp** (`shareMessage`) y el
+En el mismo archivo puedes cambiar las **rutas** (`mapsRouteUrl` y `wazeUrl`) y el
 **título y la descripción** de la vista previa (`seo`).
 
 ### Imagen de vista previa

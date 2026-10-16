@@ -1,7 +1,6 @@
-import { ArrowUpRight, CalendarDays, CalendarPlus, Clock, Download, MapPin } from 'lucide-react'
+import { ArrowUpRight, CalendarDays, Clock, MapPin } from 'lucide-react'
 import type { ReactNode } from 'react'
 import { eventConfig } from '../config/event'
-import { downloadIcs, googleCalendarUrl } from '../lib/calendar'
 import { fullDate, hasTime, timeLabel } from '../lib/date'
 import { Reveal } from './ui/Reveal'
 
@@ -69,39 +68,31 @@ export function Details() {
               value={eventConfig.location.address ?? 'Nuestro nuevo hogar'}
               delay={0.2}
               action={
-                <a
-                  className="btn"
-                  href={eventConfig.location.mapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Ver ubicación
-                  <ArrowUpRight aria-hidden="true" />
-                  <span className="sr-only">(abre Google Maps en una pestaña nueva)</span>
-                </a>
+                <div className="btn-row">
+                  <a
+                    className="btn"
+                    href={eventConfig.location.mapsRouteUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Ruta en Maps
+                    <ArrowUpRight aria-hidden="true" />
+                    <span className="sr-only">(abre la ruta en Google Maps)</span>
+                  </a>
+                  <a
+                    className="btn btn--ghost"
+                    href={eventConfig.location.wazeUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Ruta en Waze
+                    <ArrowUpRight aria-hidden="true" />
+                    <span className="sr-only">(abre la ruta en Waze)</span>
+                  </a>
+                </div>
               }
             />
           </ul>
-
-          <Reveal className="calendar-card" delay={0.1}>
-            <p className="eyebrow">Guarda la fecha</p>
-            <p className="calendar-card__title">Agrégalo a tu calendario</p>
-            {!hasTime && (
-              <p className="detail__note">Se guardará como evento de todo el día hasta confirmar la hora.</p>
-            )}
-            <div className="btn-row">
-              <a className="btn btn--ghost" href={googleCalendarUrl()} target="_blank" rel="noopener noreferrer">
-                <CalendarPlus aria-hidden="true" />
-                Google
-                <span className="sr-only">Calendar (abre en una pestaña nueva)</span>
-              </a>
-              <button type="button" className="btn btn--ghost" onClick={downloadIcs}>
-                <Download aria-hidden="true" />
-                Apple / Outlook
-                <span className="sr-only">(descargar archivo .ics)</span>
-              </button>
-            </div>
-          </Reveal>
         </div>
       </div>
     </section>
